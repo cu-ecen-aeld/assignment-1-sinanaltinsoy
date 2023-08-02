@@ -7,8 +7,8 @@ set -u
 
 NUMFILES=10
 WRITESTR=AELD_IS_FUN
-#WRITEDIR=/tmp/aeld-data
-WRITEDIR=/tmp/assignment4-result.txt 
+WRITEDIR=/tmp/aeld-data
+#WRITEDIR=/tmp/assignment4-result.txt 
 SCRIPT_DIR=$(dirname $0)
 username=$(cat $SCRIPT_DIR/conf/username.txt)
 
@@ -63,6 +63,8 @@ do
 done
 
 OUTPUTSTRING=$($SCRIPT_DIR/finder.sh "$WRITEDIR" "$WRITESTR")
+
+echo ${OUTPUTSTRING} > /tmp/assignment4-result.txt
 
 # remove temporary directories
 rm -rf /tmp/aeld-data
