@@ -8,9 +8,7 @@ set -u
 NUMFILES=10
 WRITESTR=AELD_IS_FUN
 WRITEDIR=/tmp/aeld-data
-#WRITEDIR=/tmp/assignment4-result.txt 
-SCRIPT_DIR=$(dirname $0)
-username=$(cat $SCRIPT_DIR/../conf/username.txt)
+username=$(cat conf/username.txt)
 
 if [ $# -lt 3 ]
 then
@@ -34,7 +32,7 @@ echo "Writing ${NUMFILES} files containing string ${WRITESTR} to ${WRITEDIR}"
 rm -rf "${WRITEDIR}"
 
 # create $WRITEDIR if not assignment1
-assignment=`cat $SCRIPT_DIR/conf/assignment.txt`
+assignment=`cat ../conf/assignment.txt`
 
 if [ $assignment != 'assignment1' ]
 then
@@ -51,20 +49,16 @@ then
 	fi
 fi
 
-echo "Removing the old writer utility and compiling as a native application"
-cd $SCRIPT_DIR
-make clean
-make
-cd -
+#echo "Removing the old writer utility and compiling as a native application"
+#make clean
+#make
 
 for i in $( seq 1 $NUMFILES)
 do
-	.$SCRIPT_DIR/writer "$WRITEDIR/${username}$i.txt" "$WRITESTR"
+	./writer.sh "$WRITEDIR/${username}$i.txt" "$WRITESTR"
 done
 
-OUTPUTSTRING=$($SCRIPT_DIR/finder.sh "$WRITEDIR" "$WRITESTR")
-
-echo ${OUTPUTSTRING} > /tmp/assignment4-result.txt
+OUTPUTSTRING=$(./finder.sh "$WRITEDIR" "$WRITESTR")
 
 # remove temporary directories
 rm -rf /tmp/aeld-data
