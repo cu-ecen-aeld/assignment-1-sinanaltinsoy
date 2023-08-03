@@ -10,7 +10,7 @@ WRITESTR=AELD_IS_FUN
 WRITEDIR=/tmp/aeld-data
 #WRITEDIR=/tmp/assignment4-result.txt 
 SCRIPT_DIR=$(dirname $0)
-username=$(cat $SCRIPT_DIR/conf/username.txt)
+username=$(cat $SCRIPT_DIR/../conf/username.txt)
 
 if [ $# -lt 3 ]
 then
